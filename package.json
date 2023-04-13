@@ -1,14 +1,19 @@
 {
-  "name": "playground",
-  "displayName": "Playground",
+  "name": "playground-file",
+  "displayName": "Playground File",
   "description": "",
   "version": "0.0.1",
   "engines": {
     "vscode": "^1.77.0"
   },
+  "publisher": "Syycorax",
+  "repository": {
+    "type": "git",
+    "url": "https://github.com/Syycorax/playground"},
   "categories": [
     "Other"
   ],
+  "icon": "icon.png",
   "activationEvents": [],
   "main": "./out/extension.js",
   "contributes": {
@@ -23,7 +28,7 @@
       "properties": {
         "playground.path": {
           "type": "string",
-          "default": "tmp/playground",
+          "default": "%TEMP%\\playground",
           "description": "Path for the playground files to be created in."
         }
       }

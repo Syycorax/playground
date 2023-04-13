@@ -9,15 +9,20 @@ export function activate(context: vscode.ExtensionContext) {
 	// Use the console to output diagnostic information (console.log) and errors (console.error)
 	// This line of code will only be executed once when your extension is activated
 	console.log('Congratulations, your extension "playground" is now active!');
-
 	// The command has been defined in the package.json file
 	// Now provide the implementation of the command with registerCommand
 	// The commandId parameter must match the command field in package.json
 	let disposable = vscode.commands.registerCommand('playground.play', () => {
 		// The code you place here will be executed every time your command is executed
 		//bool to know if the user is on windows or not
-		// Display an input box for the extension
+		// Display an input box for the extension	
 		let path = vscode.workspace.getConfiguration('playground').get('path');
+		// if the path is the default one, we check if the user is on windows or not
+		if (path === '%TEMP%/playground') {
+			if (process.platform !== 'win32') {
+				path = '/tmp/playground';
+			}
+		}
 		console.log(path);
 		vscode.window.showInputBox({ placeHolder: 'File extenson' }).then((ext) => {
 			// mkdir /tmp/playground
